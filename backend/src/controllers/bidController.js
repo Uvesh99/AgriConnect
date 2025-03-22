@@ -16,7 +16,7 @@ export const createBid = async (req, res) => {
 // Get all bids for a specific product
 export const getBidsByProduct = async (req, res) => {
     try {
-        const bids = await Bid.find({ productId: req.params.productId })
+        const bids = await Bid.find(req.params.id)
                               .populate('userId', 'name');
         res.json(bids);
     } catch (err) {
