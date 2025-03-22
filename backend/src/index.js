@@ -9,6 +9,8 @@ import orderRoutes from "./routes/orderRoutes.js";
 import farmVerificationRoutes from "./routes/farmVerificationRoutes.js";
 import tokenRoutes from "./routes/tokenRoutes.js"
 import cors from "cors"
+import certificationRoutes from "./routes/certificationRoutes.js";
+import cropRoutes from "./routes/cropRoutes.js"
 
 dotenv.config();
 connectDB();
@@ -24,6 +26,8 @@ app.use("/api/orders", orderRoutes);
 // app.use("/api/payment", paymentRoutes); 
 app.use("/api/farm-verification", farmVerificationRoutes);
 app.use("/api/tokens", tokenRoutes);
+app.use("/api/certifications", certificationRoutes);
+app.use("/api/crop",cropRoutes)
 
 app.get("/",(req,res)=>{
     res.send("Welcome to AgriConnect API's")
