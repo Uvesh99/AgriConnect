@@ -72,30 +72,40 @@ export const verifyFarmer = async (req, res) => {
     // const pdfBuffer = fs.readFileSync(pdfFilePath);
     // const certificateUrl = await uploadToCloudinary(pdfBuffer, 'certificates');
 
-// Generate PDF Certificate
-const pdfFilePath = await generateCertificate({
-    name: farmer.name,
+// // Generate PDF Certificate
+// const pdfFilePath = await generateCertificate({
+//     name: farmer.name,
+//     regNo,
+//     issueDate,
+//     expiryDate
+//   });
+  
+//   // Ensure PDF file is fully written before proceeding
+//   await new Promise(resolve => setTimeout(resolve, 100)); 
+  
+//   // Read PDF securely
+//   const pdfBuffer = await fs.promises.readFile(pdfFilePath);
+  
+//   const certificateUrl = await uploadToCloudinary(pdfBuffer, 'certificates')
+//     .then(url => {
+//       console.log("✅ Cloudinary Upload Successful:", url);
+//       return url;
+//     })
+//     .catch(err => {
+//       console.error("❌ Cloudinary Upload Failed:", err.message);
+//       throw err;
+//     });
+  
+
+const imageFilePath = await generateCertificate({
+      name: farmer.name,
     regNo,
     issueDate,
     expiryDate
-  });
-  
-  // Ensure PDF file is fully written before proceeding
-  await new Promise(resolve => setTimeout(resolve, 100)); 
-  
-  // Read PDF securely
-  const pdfBuffer = await fs.promises.readFile(pdfFilePath);
-  
-  const certificateUrl = await uploadToCloudinary(pdfBuffer, 'certificates')
-    .then(url => {
-      console.log("✅ Cloudinary Upload Successful:", url);
-      return url;
-    })
-    .catch(err => {
-      console.error("❌ Cloudinary Upload Failed:", err.message);
-      throw err;
-    });
-  
+});
+const imageBuffer = await fs.promises.readFile(imageFilePath);
+const certificateUrl = await uploadToCloudinary(imageBuffer, 'certificates');
+
 
     // Save certificate details in database
     const certification = new Certification({
@@ -115,7 +125,7 @@ const pdfFilePath = await generateCertificate({
     await farmer.save();
 
     // Cleanup PDF file after upload
-    fs.unlinkSync(pdfFilePath);
+    fs.unlinkSync(imageFilePath);
 
     res.status(201).json({
       message: "Farmer verified successfully!",
