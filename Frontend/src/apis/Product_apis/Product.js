@@ -129,3 +129,25 @@ export const GetBigProducts = async (productId) => {
     throw error;
   }
   };
+
+export const submitReview = async (productId, rating, review) => {
+  const token = localStorage.getItem('authToken'); 
+ 
+  const config = {
+      headers: {
+          'Authorization': `Bearer ${token}`, 
+          'Content-Type': 'application/json'
+      }
+  };
+    try {
+        const response = await axios.post(`${API_URL}/api/review`, {
+            productId,
+            rating,
+            review
+        },config);
+        return response.data; 
+    } catch (error) {
+        console.error('Error submitting review:', error);
+        throw error; 
+    }
+};

@@ -1,82 +1,73 @@
-// Single File ChatBot Component
-
-import React, { useState } from 'react';
-import axios from 'axios';
-import { AiOutlineSend } from 'react-icons/ai';
+// src/components/Chatbot.jsx
+import { useState } from "react";
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
+  const API_KEY = "AIzaSyAF5WnWgLOWJthnfD6_KpSuD7eI5FdAQBk";
 
-  const getChatResponse = async (message) => {
-    try {
-      const response = await axios.post('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyCke4DnreRsYq14UPf4-qmQr0qiB1mF6lg', {
-        model: "gemini-2.0-flash",
-        messages: [
-          { role: "system", content: "You are a helpful chatbot for my website." },
-          { role: "user", content: message },
-        ],
-      }, {
-        headers: {
-          'Authorization': 'AIzaSyCke4DnreRsYq14UPf4-qmQr0qiB1mF6lg',
-          'Content-Type': 'application/json',
-        },
-      });
-      return response.data.choices[0].message.content;
-    } catch (error) {
-      console.error("Error fetching response:", error);
-      return "Oops! Something went wrong.";
-    }
-  };
-
-  const handleSend = async () => {
+  const sendMessage = async () => {
     if (!input.trim()) return;
 
-    const userMessage = { role: "user", content: input };
-    setMessages((prev) => [...prev, userMessage]);
+    const userMessage = { sender: "user", text: input };
+    setMessages([...messages, userMessage]);
+
+    const agriconnectInfo = `
+      AgriConnect is a platform that bridges natural farmers with conscious consumers. 
+      It helps farmers find reliable markets while ensuring consumers get transparency about natural farming products.
+      Key features:
+      - Farmer verification through digital certification.
+      - Consumer traceability via QR codes for tracking product origins, farming methods, and certifications.
+      - A direct marketplace that connects verified farmers to consumers, reducing intermediary costs and ensuring fair pricing.
+      Respond briefly to user queries based on this mission and functionality.
+    `;
 
     try {
-        const botResponse = await getChatResponse(input);
-        console.log(botResponse);
-        
-      setMessages((prev) => [...prev, { role: "bot", content: botResponse }]);
+      const response = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: `User Query: ${input}\n\n${agriconnectInfo}` }] }],
+          }),
+        }
+      );
+
+      const data = await response.json();
+      const botReply = data?.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't understand that.";
+
+      setMessages([...messages, userMessage, { sender: "bot", text: botReply }]);
     } catch (error) {
-      console.error(error);
+      setMessages([...messages, userMessage, { sender: "bot", text: "Error fetching response." }]);
     }
 
     setInput("");
   };
 
   return (
-    <div className="flex flex-col justify-between h-screen p-4 bg-gray-100">
-      <h1 className="text-2xl font-semibold mb-4 text-center">🌟 Website Chatbot</h1>
-
-      <div className="flex-grow overflow-y-auto bg-white p-4 rounded-lg shadow-md space-y-3">
-        {messages.map((msg, index) => (
-          <div
-            key={index}
-            className={`p-3 rounded-xl ${
-              msg.role === "user" ? "bg-blue-500 text-white self-end" : "bg-gray-200 text-black self-start"
-            }`}
-          >
-            {msg.content}
+    <div className="fixed bottom-4 right-4 w-80 bg-white shadow-lg rounded-lg p-4 border">
+      <h2 className="text-lg font-semibold mb-2">AgriConnect Chatbot</h2>
+      <div className="h-60 overflow-y-auto border p-2 mb-2">
+        {messages.map((msg, i) => (
+          <div key={i} className={`mb-1 ${msg.sender === "user" ? "text-right" : "text-left"}`}>
+            <span className={`inline-block px-2 py-1 rounded-lg ${msg.sender === "user" ? "bg-blue-200" : "bg-gray-200"}`}>
+              {msg.text}
+            </span>
           </div>
         ))}
       </div>
-
-      <div className="flex items-center mt-4">
+      <div className="flex">
         <input
+          className="flex-1 border rounded-l p-2"
           type="text"
-          className="flex-grow p-3 border-2 border-gray-300 rounded-l-lg focus:outline-none"
-          placeholder="Type your message..."
+          placeholder="Ask me about AgriConnect..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          onKeyPress={(e) => e.key === "Enter" && sendMessage()}
         />
-        <button
-          onClick={handleSend}
-          className="p-3 bg-blue-500 text-white rounded-r-lg hover:bg-blue-600 flex items-center justify-center"
-        >
-          <AiOutlineSend size={24} />
+        <button className="bg-blue-500 text-white px-4 rounded-r" onClick={sendMessage}>
+          Send
         </button>
       </div>
     </div>
