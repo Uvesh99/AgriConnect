@@ -195,64 +195,114 @@
 //     });
 //   });
 // };
-
-
 import { createCanvas, loadImage } from 'canvas';
 import fs from 'fs';
 import path from 'path';
 
-export const generateCertificate = async ({ name, regNo, issueDate, expiryDate }) => {
+export const generateCertificate = async ({ name, regNo, issueDate, expiryDate}) => {
   return new Promise(async (resolve, reject) => {
     const width = 800;
     const height = 600;
     const canvas = createCanvas(width, height);
     const ctx = canvas.getContext('2d');
 
-    // Green-themed background
-    ctx.fillStyle = '#E6F4EA';
+    // Background Pattern (Use a background image URL)
+    // const backgroundImage = path.join("uploads",'tp244-bg2-04.jpg')
+    // ctx.drawImage({backgroundImage}, 0, 0, width, height);
+
+    const backgroundImagePath = path.join("uploads", 'tp244-bg2-04.jpg');
+if (fs.existsSync(backgroundImagePath)) {
+    const backgroundImage = await loadImage(backgroundImagePath);
+    ctx.drawImage(backgroundImage, 0, 0, width, height);
+} else {
+    console.error('❌ Background image not found at:', backgroundImagePath);
+}
+
+    ctx.globalAlpha = 0.05;  // Adjust opacity of background
+    ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
+    ctx.globalAlpha = 1.0;  // Reset alpha to 1 for further content
 
-    // Decorative Header
+    // Border Design
+    ctx.lineWidth = 16;
+    ctx.strokeStyle = '#228B22'; // Green border color
+    ctx.strokeRect(8, 8, width - 16, height - 16);
+
+    // Header
     ctx.fillStyle = '#228B22'; // Dark green header
-    ctx.fillRect(0, 0, width, 80);
-    ctx.fillStyle = '#FFFFFF';
-    ctx.font = 'bold 36px Arial';
-    ctx.fillText('FARMER VERIFICATION CERTIFICATE', 120, 55);
+    ctx.font = '36px serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('Certificate of Organic Farming', width / 2.2, 90);
 
-    // Website logo
+    // Certification Status
+    ctx.fillStyle = '#006400'; // Dark Green Text
+    ctx.font = 'italic 18px Arial';
+    ctx.fillText('Official Certification Document', width / 2, 120);
+
+    // Registration Number Box
+    ctx.fillStyle = '#E6F4EA';
+    ctx.fillRect(width - 180, 20, 160, 60);
+    ctx.strokeStyle = '#228B22';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(width - 180, 20, 160, 60);
+    ctx.fillStyle = '#006400';
+    ctx.font = '12px Arial';
+    ctx.fillText('Registration Number', width - 110, 35);
+    ctx.font = '20px Arial';
+    ctx.fillText(regNo, width - 110, 55);
+
+    // Main Content
+    ctx.fillStyle = '#006400';
+    ctx.font = '20px serif';
+    ctx.fillText('This is to certify that', width / 2, 150);
+    ctx.font = '30px serif';
+    ctx.fillText(name, width / 2, 230);
+
+    // Certification Text
+    ctx.fillStyle = '#333';
+    ctx.font = '16px Arial';
+    ctx.textAlign = 'center';
+    
+    // Split the text into two lines
+    const line1 = 'has successfully met all requirements and standards';
+    const line2 = 'for organic farming practices in accordance with international guidelines.';
+    
+    // Render the first line
+    ctx.fillText(line1, width / 2, 280);
+    
+    // Render the second line slightly below the first
+    ctx.fillText(line2, width / 2, 310);
+
+    // Dates Section
+    ctx.fillStyle = '#006400'; // Dark Green
+    ctx.font = '16px Arial';
+    ctx.fillText('Issue Date: ' + new Date(issueDate).toDateString(), width / 3, 350);
+    ctx.fillText('Valid Until: ' + new Date(expiryDate).toDateString(), (2 * width) / 3, 350);
+
+    // // Location Section
+    // ctx.fillStyle = '#006400'; // Dark Green
+    // ctx.font = '16px Arial';
+    // ctx.fillText('Location: ' + location, width / 2, 400);
+
+    // Footer - Certifying Authority and Logo
+    ctx.fillStyle = '#228B22';
+    ctx.font = '18px Arial';
+    ctx.fillText('Certified by Agricultural Department', width / 2, 500);
+
+    // Add Organic Seal (Logo)
     const logoPath = path.join('uploads', 'website_logo.jpg');
     if (fs.existsSync(logoPath)) {
       const logo = await loadImage(logoPath);
-      ctx.drawImage(logo, 50, 100, 100, 100); // Logo above footer content
+      ctx.drawImage(logo, width/2, height - 200, 80, 80);
     }
 
-    // Certificate Body
-    ctx.fillStyle = '#333';
-    ctx.font = '20px Arial';
-    ctx.fillText(`Name: ${name}`, 200, 200);
-    ctx.fillText(`Registration No: ${regNo}`, 200, 250);
-    ctx.fillText(`Issue Date: ${new Date(issueDate).toDateString()}`, 200, 300);
-    ctx.fillText(`Expiry Date: ${new Date(expiryDate).toDateString()}`, 200, 350);
-
-    // Inspirational Quote for Farmers
-    ctx.fillStyle = '#006400'; // Dark Green Text
-    ctx.font = 'italic 18px Arial';
-    ctx.fillText(`"The farmer is the only man in our economy who buys everything`, 150, 400);
-    ctx.fillText(`at retail, sells everything at wholesale, and pays the freight both ways."`, 150, 420);
-
-    // Footer
-    ctx.fillStyle = '#228B22';
-    ctx.font = '18px Arial';
-    ctx.fillText(`Certified by Agricultural Department`, 250, 500);
-
-    // Create `uploads` directory if it doesn't exist
+    // Save the certificate
     const uploadsDir = path.join('uploads');
     if (!fs.existsSync(uploadsDir)) {
       fs.mkdirSync(uploadsDir, { recursive: true });
     }
 
     const filePath = path.join(uploadsDir, `certificate_${regNo}.png`);
-
     const out = fs.createWriteStream(filePath);
     const stream = canvas.createPNGStream();
 
