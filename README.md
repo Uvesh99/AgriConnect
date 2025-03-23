@@ -106,6 +106,13 @@ Our platform provides a transparent and reliable marketplace connecting verified
 ### 7. *Farmer Help Center*
 ![image](https://github.com/user-attachments/assets/c932791d-c8ba-4d62-9c96-3237ee8bff7a)
 
+### 7. *Price and Trend Analysis*
+![image](https://github.com/user-attachments/assets/2bd04968-0155-4660-9ffb-5ff6a9e07c71)
+
+![image](https://github.com/user-attachments/assets/1b81293d-dc7a-4044-88a9-909c990bedf1)
+
+
+
 
 
 
