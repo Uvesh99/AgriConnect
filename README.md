@@ -5,6 +5,9 @@
 -  (3) Ayush Gajera ( AI/ML & Backend Developer)
 -  (4) Meet Shah ( UI/UX Designer & Frontend Developer )
 
+# Video Presentation
+https://drive.google.com/file/d/1KB1YLQyvwjUMEK8HWaXRBu4w-MhTJFfI/view?usp=sharing
+
 # Natural Farming Marketplace Portal
 
 ## Overview
@@ -141,4 +144,4 @@ This project is licensed under the MIT License.
 ---
 
 ## Contact
-For queries or support, reach out to us at [email@example.com].
+For queries or support, reach out to us at [uveshalisaiyad@gmail.com].
