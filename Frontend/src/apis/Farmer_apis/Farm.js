@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://agriconnect-api-zylb.onrender.com'; 
+const API_URL = 'https://agriconnect-backend-oumj.onrender.com'; 
 
 export const uploadFarmVerification = async (formData) => {
   try {

@@ -15,7 +15,7 @@ import Logout from '@mui/icons-material/Logout';
 const navigation = [
   { name: 'Home', href: '/', current: true },
   { name: 'Marketplace', href: '/marketplace', current: false },
-  { name: 'Add Farm', href: '/add-farm', current: false },
+  { name: 'Genarate Cirtificate', href: '/add-farm', current: false },
   { name: 'Add Product', href: '/add-product', current: false },
   { name: 'Community', href: '/community', current: false },
 ];
@@ -142,7 +142,7 @@ export default function Navbar() {
               transformOrigin={{ horizontal: 'right', vertical: 'top' }}
               anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-              <MenuItem onClick={handleClose}>
+              <MenuItem onClick={() => navigate("/profile")}>
                 <Avatar /> My account
               </MenuItem>
               <MenuItem onClick={() => navigate("/dashboard")}>
