@@ -1,3 +1,10 @@
+## Team Infromation:
+- Team Number = 20
+  (1) Saiyad Uveshali ( Backend Developer )
+  (2) prince Raiyani ( AI/ML Developer)
+  (3) Ayush Gajera ( AI/ML & Backend Developer)
+  (4) Meet Shah ( UI/UX Designer & Frontend Developer )
+
 # Natural Farming Marketplace Portal
 
 ## Overview
@@ -70,7 +77,8 @@ Our platform provides a transparent and reliable marketplace connecting verified
 ## Module Previews
 
 ### 1. *Marketplace Page*
-![Marketplace Screenshot](./images/marketplace.png)
+![image](https://github.com/user-attachments/assets/f969e5aa-f3ca-4f54-be10-9dde238c389b)
+
 
 ### 2. *Bidding System*
 ![Bidding Module Screenshot](./images/bidding.png)
@@ -79,23 +87,49 @@ Our platform provides a transparent and reliable marketplace connecting verified
 ![Verification Module Screenshot](./images/verification.png)
 
 ### 4. *Communication Channel*
-![Communication Module Screenshot](./images/communication.png)
+![image](https://github.com/user-attachments/assets/5e98dbb7-a65e-4804-b961-cc766f6892c5)
+
 
 ### 5. *Farmer Help Center*
-![Help Center Screenshot](./images/help-center.png)
+![image](https://github.com/user-attachments/assets/c932791d-c8ba-4d62-9c96-3237ee8bff7a)
+
 
 ---
 
 ## Getting Started
+
+Follow these instructions to set up and run the React frontend application locally.
+
+### Prerequisites
+- Node.js (v16.x or higher)
+- npm (v8.x or higher)
+- Git
+
+# Frontend
 1. Clone the repository.
+    ```sh
+   git clone https://github.com/Uvesh99/AgriConnect.git
+   ```
 2. Install dependencies.
-3. Run backend and frontend servers.
-4. Access the portal at localhost:3000.
-
----
-
-## Contributing
-We welcome contributions! Please follow our [CONTRIBUTING.md](./CONTRIBUTING.md) guidelines.
+    ```sh
+   cd Frontend
+   npm i
+   ```
+4. Install dependencies for backend and Run backend and frontend servers.
+   ```sh
+   cd backend
+   npm i
+   ```
+   ```sh
+   cd Frontend
+   npm run dev
+   ```
+    ```sh
+   cd backend
+   node index.js
+   ```
+   
+5. backend run on localhost:5000.
 
 ---
 
