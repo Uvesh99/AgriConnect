@@ -16,6 +16,9 @@ import MarketUpdates from './pages/MarketUpdates';
 import Community from './pages/Community';
 import Bid from './pages/Bid';
 import Chatbot from './components/Chatbot';
+import VerifyFarmer from './components/VerifyFarmer';
+import FarmerHelp from './pages/FarmerHelp';
+import Contact from './pages/Contact';
 function App() {
  
 
@@ -64,7 +67,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/add-farm" element={<UploadForm />} />
+            <Route path="/add-farm" element={<VerifyFarmer />} />
             <Route path="/add-product" element={<UploadProduct />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/marketplace" element={<Marketplace />} />
@@ -74,6 +77,8 @@ function App() {
             <Route path="/messages" element={<DirectMessages />} />
             <Route path="/groups" element={<Groups />} />
             <Route path="/market-updates" element={<MarketUpdates />} />
+            <Route path="/help" element={<FarmerHelp />} />
+            <Route path="/contact" element={<Contact />} />
             </Routes>
             <Chatbot/>
         </main>

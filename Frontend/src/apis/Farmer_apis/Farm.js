@@ -20,3 +20,19 @@ export const uploadFarmVerification = async (formData) => {
     throw error; 
   }
 };
+
+
+export const verifyFarmer = async (formData, authToken) => {
+  try {
+    const response = await axios.post('http://localhost:5000/api/certifications/verify-farmer', formData, {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response.data; 
+  } catch (error) {
+    console.error('Error verifying farmer:', error);
+    throw error;
+  }
+};

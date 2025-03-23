@@ -18,6 +18,7 @@ const navigation = [
   { name: 'Genarate Cirtificate', href: '/add-farm', current: false },
   { name: 'Add Product', href: '/add-product', current: false },
   { name: 'Community', href: '/community', current: false },
+  { name: 'Farmer Help Center', href: '/help', current: false },
   { name: 'Prices & Trends', href: 'http://127.0.0.1:5001/', current: false },
 
 ];
