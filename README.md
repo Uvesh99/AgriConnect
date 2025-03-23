@@ -1,9 +1,9 @@
 ## Team Infromation:
 - Team Number = 20
-  (1) Saiyad Uveshali ( Backend Developer )
-  (2) prince Raiyani ( AI/ML Developer)
-  (3) Ayush Gajera ( AI/ML & Backend Developer)
-  (4) Meet Shah ( UI/UX Designer & Frontend Developer )
+-  (1) Saiyad Uveshali ( Backend Developer )
+-  (2) prince Raiyani ( AI/ML Developer)
+-  (3) Ayush Gajera ( AI/ML & Backend Developer)
+-  (4) Meet Shah ( UI/UX Designer & Frontend Developer )
 
 # Natural Farming Marketplace Portal
 
@@ -81,10 +81,12 @@ Our platform provides a transparent and reliable marketplace connecting verified
 
 
 ### 2. *Bidding System*
-![Bidding Module Screenshot](./images/bidding.png)
+![WhatsApp Image 2025-03-23 at 10 30 56_125c15db](https://github.com/user-attachments/assets/b217bd5e-72d4-4020-83f3-34a241c88a91)
+
 
 ### 3. *Farmer Verification*
-![Verification Module Screenshot](./images/verification.png)
+![WhatsApp Image 2025-03-23 at 10 23 21_5bf54734](https://github.com/user-attachments/assets/94ef0b2f-e987-4a71-9d9e-e2029b83cdd7)
+
 
 ### 4. *Communication Channel*
 ![image](https://github.com/user-attachments/assets/5e98dbb7-a65e-4804-b961-cc766f6892c5)
@@ -105,7 +107,7 @@ Follow these instructions to set up and run the React frontend application local
 - npm (v8.x or higher)
 - Git
 
-# Frontend
+# Frontend & Backend 
 1. Clone the repository.
     ```sh
    git clone https://github.com/Uvesh99/AgriConnect.git
