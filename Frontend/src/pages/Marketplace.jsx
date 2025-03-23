@@ -39,7 +39,8 @@ import { MenuItem, Select, InputLabel, FormControl } from '@mui/material';
 import { updateProduct, deleteProduct } from '../apis/Product_apis/Product.js';
 import { createOrder } from '../apis/Product_apis/Product.js';
 import { useNavigate } from 'react-router-dom';
-import { submitReview } from '../apis/Product_apis/Product.js';
+import { submitReview,getAllReviews } from '../apis/Product_apis/Product.js';
+
 
 export default function Marketplace() {
   const [products, setProducts] = useState([]);
@@ -53,6 +54,7 @@ export default function Marketplace() {
   const [unit, setUnit] = useState('kg');
   const [newReview, setNewReview] = useState(''); 
     const [newRating, setNewRating] = useState(1);
+    const [reviews, setReviews] = useState([]);
 
   const navigate = useNavigate();
 
@@ -221,6 +223,19 @@ export default function Marketplace() {
         alert('Failed to submit review. Please try again later.');
     }
 };
+
+const fetchReviews = async (productId) => {
+  try {
+    const fetchedReviews = await getAllReviews(productId);
+    setReviews(fetchedReviews);
+  } catch (error) {
+    console.log(error)
+  } 
+};
+
+useEffect(() => {
+  fetchReviews();
+}, []);
 
   const userRole = localStorage.getItem('role'); 
 const userId = localStorage.getItem('userId'); 
@@ -686,6 +701,26 @@ const userId = localStorage.getItem('userId');
                                     Submit Review
                                 </Button>
                             </div>
+                            <div>
+      <h2 className="font-semibold text-lg mb-2">Reviews</h2>
+      {reviews.length > 0 ? (
+        <ul>
+          {reviews.map((review) => (
+            <li key={review.id} className="border-b py-2">
+              <div>
+                <strong>{review.userName}:</strong> 
+                <span className="ml-2">{review.text}</span> 
+              </div>
+              <div>
+                <span>Rating: {review.rating}</span>
+              </div>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No reviews available for this product.</p>
+      )}
+    </div>
                         </DialogContent>
                         
                         <DialogActions>

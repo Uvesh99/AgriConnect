@@ -151,3 +151,20 @@ export const submitReview = async (productId, rating, review) => {
         throw error; 
     }
 };
+
+export const getAllReviews = async (productId) => {
+  
+  try {
+    const response = await axios.get(`${API_URL}/api/review/${productId}`);
+   
+    console.log(response)
+    if (response.status !== 200) {
+      throw new Error('Failed to fetch reviews');
+    }
+   
+    return response.data; 
+  } catch (error) {
+    console.error('Error fetching reviews:', error.message);
+    throw new Error('An error occurred while fetching reviews.');
+  }
+};
