@@ -60,42 +60,6 @@ export const verifyFarmer = async (req, res) => {
     const soilTestUrl = await uploadToCloudinary(req.files['soil_test_report'][0].buffer, 'certificates');
     const landDocUrl = await uploadToCloudinary(req.files['land_document'][0].buffer, 'certificates');
 
-    // Generate PDF Certificate
-    // const pdfFilePath = await generateCertificate({
-    //   name: farmer.name,
-    //   regNo,
-    //   issueDate,
-    //   expiryDate
-    // });
-
-    
-    // const pdfBuffer = fs.readFileSync(pdfFilePath);
-    // const certificateUrl = await uploadToCloudinary(pdfBuffer, 'certificates');
-
-// // Generate PDF Certificate
-// const pdfFilePath = await generateCertificate({
-//     name: farmer.name,
-//     regNo,
-//     issueDate,
-//     expiryDate
-//   });
-  
-//   // Ensure PDF file is fully written before proceeding
-//   await new Promise(resolve => setTimeout(resolve, 100)); 
-  
-//   // Read PDF securely
-//   const pdfBuffer = await fs.promises.readFile(pdfFilePath);
-  
-//   const certificateUrl = await uploadToCloudinary(pdfBuffer, 'certificates')
-//     .then(url => {
-//       console.log("✅ Cloudinary Upload Successful:", url);
-//       return url;
-//     })
-//     .catch(err => {
-//       console.error("❌ Cloudinary Upload Failed:", err.message);
-//       throw err;
-//     });
-  
 
 const imageFilePath = await generateCertificate({
       name: farmer.name,
