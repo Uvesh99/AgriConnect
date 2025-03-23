@@ -39,6 +39,7 @@ import { MenuItem, Select, InputLabel, FormControl } from '@mui/material';
 import { updateProduct, deleteProduct } from '../apis/Product_apis/Product.js';
 import { createOrder } from '../apis/Product_apis/Product.js';
 import { useNavigate } from 'react-router-dom';
+import { submitReview } from '../apis/Product_apis/Product.js';
 
 export default function Marketplace() {
   const [products, setProducts] = useState([]);
@@ -50,6 +51,8 @@ export default function Marketplace() {
   const [quantity, setQuantity] = useState(1);
   const [productIdToBuy, setProductIdToBuy] = useState(null);
   const [unit, setUnit] = useState('kg');
+  const [newReview, setNewReview] = useState(''); 
+    const [newRating, setNewRating] = useState(1);
 
   const navigate = useNavigate();
 
@@ -193,10 +196,31 @@ export default function Marketplace() {
     }
   };
 
-  const handleNavigate = (productId) => {
+  // const handleNavigate = (productId) => {
     
-    navigate(`/bid/${productId}`);
+  //   navigate(`/bid/${productId}`);
+  // };
+
+  const handleNavigate = (productId) => {
+    if (window.confirm("Are you sure you want to place a bulk order?")) {
+      navigate(`/bid/${productId}`);
+    }
   };
+
+  const handleSubmitReview = async (e) => {
+    e.preventDefault();
+    if (!selectedProduct) return; 
+    try {
+        await submitReview(selectedProduct.id, newRating, newReview);
+        alert('Review submitted successfully!');
+        setNewReview(''); 
+        setNewRating(1); 
+      
+    } catch (error) {
+        console.error('Failed to submit review:', error);
+        alert('Failed to submit review. Please try again later.');
+    }
+};
 
   const userRole = localStorage.getItem('role'); 
 const userId = localStorage.getItem('userId'); 
@@ -628,7 +652,50 @@ const userId = localStorage.getItem('userId');
                      </Paper>
                    </Grid>
                  </Grid>
-               </DialogContent>
+              </DialogContent>
+              
+              <Dialog open={dialogOpen} onClose={handleCloseDialog}>
+                {selectedProduct && (
+                    <>
+                        {/* Existing dialog content */}
+
+                        <DialogContent>
+                            {/* Existing product details */}
+                            
+                            {/* Review Section */}
+                            <div style={{ marginTop: '20px' }}>
+                                <Typography variant="h6">Add a Review</Typography>
+                                <TextField
+                                    fullWidth
+                                    label="Your Review"
+                                    multiline
+                                    rows={4}
+                                    value={newReview}
+                                    onChange={(e) => setNewReview(e.target.value)}
+                                    variant="outlined"
+                                />
+                                <TextField
+                                    fullWidth
+                                    label="Your Rating"
+                                    type="number"
+                                    inputProps={{ min: 1, max: 5 }} // Limit range to 1-5
+                                    value={newRating}
+                                    onChange={(e) => setNewRating(e.target.value)}
+                                    variant="outlined"
+                                    style={{ marginTop: '10px' }}
+                                />
+                                <Button onClick={handleSubmitReview} variant="contained" color="primary" style={{ marginTop: '10px' }}>
+                                    Submit Review
+                                </Button>
+                            </div>
+                        </DialogContent>
+                        
+                        <DialogActions>
+                            <Button onClick={handleCloseDialog}>Close</Button>
+                        </DialogActions>
+                    </>
+                )}
+            </Dialog>
                <DialogActions
                  sx={{
                    padding: '24px',
@@ -656,17 +723,30 @@ const userId = localStorage.getItem('userId');
                    Buy Now
                 </Button>
                 
-                <Button
+                {/* <Button
                      variant="contained"
                      startIcon={<ShoppingCart />}
                      sx={{
                        backgroundColor: 'green',
                        '&:hover': { backgroundColor: 'black', color: 'white' }
                      }}
-                     onClick={handleNavigate(selectedProduct.id)}
+                    
                    >
                      Order in bulk
-                </Button>
+                </Button> */}
+
+                <Button
+  variant="contained"
+  startIcon={<ShoppingCart />}
+  sx={{
+    backgroundColor: 'green',
+    '&:hover': { backgroundColor: 'black', color: 'white' }
+  }}
+  onClick={() => handleNavigate(selectedProduct?.id)}
+  disabled={!selectedProduct} // Prevents errors if selectedProduct is undefined
+>
+  Order in bulk
+</Button>
                 
                  <Button
                    variant="contained"
