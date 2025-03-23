@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://agriconnect-api-zylb.onrender.com';
+const API_URL = 'https://agriconnect-backend-oumj.onrender.com';
 
 export const fetchProducts = async () => {
   try {
@@ -71,4 +71,61 @@ export const deleteProduct = async (productId) => {
     if (!response.ok) {
       throw new Error('Failed to delete product');
     }
+};
+  
+export const createOrder = async (productId, quantity) => {
+  const authToken = localStorage.getItem("authToken");
+  try {
+    const response = await axios.post(`${API_URL}/api/orders/`, {
+      productId: productId,
+      quantity: quantity,
+    }, {
+      headers: {
+        'Authorization': `Bearer ${authToken}`, 
+      },
+    });
+    
+    return response.data;
+  } catch (error) {
+    console.error('Error creating order:', error);
+    throw error;
+  }
+};
+
+export const BidProduct = async (productId, bidAmount) => {
+  const authToken = localStorage.getItem("authToken");
+  try {
+    const response = await axios.post(`${API_URL}/api/bid`, {
+      productId: productId,
+      price: bidAmount,
+    }, {
+      headers: {
+        'Authorization': `Bearer ${authToken}`,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error('Error creating bid:', error);
+    throw error;
+  }
+};
+
+
+export const GetBigProducts = async (productId) => {
+  try {
+    console.log(productId);
+    
+    const response = await axios.get(`${API_URL}/api/bid/${productId}`);
+    console.log(response);
+    
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    
+    return response.data;
+  } catch (error) {
+    console.error('Error creating bid:', error);
+    throw error;
+  }
   };

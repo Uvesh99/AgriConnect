@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Leaf, MapPin, Package, Coins, Image as ImageIcon } from "lucide-react";
 import { addProduct } from "../apis/Product_apis/Product";
+import { useNavigate } from "react-router-dom";
 
 const UploadProduct = () => {
   const [formData, setFormData] = useState({
@@ -67,6 +68,8 @@ const UploadProduct = () => {
       alert('Failed to add product. Please try again.');
     }
   };
+
+
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-white p-6">
