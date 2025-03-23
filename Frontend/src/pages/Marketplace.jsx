@@ -652,9 +652,7 @@ const userId = localStorage.getItem('userId');
                      </Paper>
                    </Grid>
                  </Grid>
-              </DialogContent>
-              
-              <Dialog open={dialogOpen} onClose={handleCloseDialog}>
+                 <div open={dialogOpen} onClose={handleCloseDialog}>
                 {selectedProduct && (
                     <>
                         {/* Existing dialog content */}
@@ -695,7 +693,10 @@ const userId = localStorage.getItem('userId');
                         </DialogActions>
                     </>
                 )}
-            </Dialog>
+            </div>
+              </DialogContent>
+              
+
                <DialogActions
                  sx={{
                    padding: '24px',
