@@ -86,16 +86,20 @@ Our platform provides a transparent and reliable marketplace connecting verified
 ### 2. *Bidding System*
 ![WhatsApp Image 2025-03-23 at 10 30 56_125c15db](https://github.com/user-attachments/assets/b217bd5e-72d4-4020-83f3-34a241c88a91)
 
+### 3. *Organic Farming Soil Verification*
+![image](https://github.com/user-attachments/assets/acea94ee-5843-4d98-9634-e41ef5d1feb7)
 
-### 3. *Farmer Verification*
+
+
+### 4. *Farmer Verification*
 ![WhatsApp Image 2025-03-23 at 10 23 21_5bf54734](https://github.com/user-attachments/assets/94ef0b2f-e987-4a71-9d9e-e2029b83cdd7)
 
 
-### 4. *Communication Channel*
+### 5. *Communication Channel*
 ![image](https://github.com/user-attachments/assets/5e98dbb7-a65e-4804-b961-cc766f6892c5)
 
 
-### 5. *Farmer Help Center*
+### 6. *Farmer Help Center*
 ![image](https://github.com/user-attachments/assets/c932791d-c8ba-4d62-9c96-3237ee8bff7a)
 
 
