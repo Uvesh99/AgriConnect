@@ -1,5 +1,4 @@
 ## Team Infromation:
-- Team Number = 20
 -  (1) Saiyad Uveshali ( Backend Developer )
 -  (2) prince Raiyani ( AI/ML Developer)
 -  (3) Ayush Gajera ( AI/ML & Backend Developer)
