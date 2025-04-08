@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Price Analysis & Prediction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Google Translate API for Multilingual Support -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+        background-color: #f0f8e2;
+        color: #333;
+    }
+
+    header {
+        background-color: #3b945e;
+        color: white;
+        text-align: center;
+        padding: 15px;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .container {
+        width: 90%;
+        margin: 20px auto;
+    }
+
+    h2 {
+        color: #3b945e;
+        margin-bottom: 10px;
+    }
+
+    .dropdown-section, .prediction-result, .insights-section {
+        background: #fff;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    select, input[type="month"], button {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        font-size: 1rem;
+        border: 2px solid #3b945e;
+        border-radius: 5px;
+    }
+
+    button {
+        background-color: #3b945e;
+        color: white;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #2b703d;
+    }
+
+    .crop-insight-card {
+        background-color: #e8f5e9;
+        border-left: 5px solid #4CAF50;
+        margin-bottom: 15px;
+        padding: 15px;
+        border-radius: 5px;
+    }
+
+    .insight-title {
+        font-weight: bold;
+        color: #2b703d;
+        margin-bottom: 5px;
+    }
+
+    .insight-detail {
+        font-size: 18px;
+        color: #555;
+        line-height: 2rem;
+    }
+
+    .icon {
+        margin-right: 8px;
+    }
+
+    .highlight {
+        font-weight: bold;
+        color: #2e7d32;
+    }
+
+    footer {
+        text-align: center;
+        padding: 10px;
+        background: #3b945e;
+        color: white;
+        margin-top: 20px;
+    }
+</style>
+<body>
+
+    <header>
+        <div id="google_translate_element"></div>
+        <h1 class="title">🌾 Crop Price Analysis & Prediction 🌿</h1>
+    </header>
+
+    <div class="container">
+
+        <section class="dropdown-section">
+            <h2>📊 Predict Future Crop Prices</h2>
+            <form method="POST" action="/predict">
+                <label for="crop_name">Select Crop:</label>
+                <select name="crop_name" id="crop_name">
+                    {% for crop in crop_list %}
+                        <option value="{{ crop }}">{{ crop }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="future_date">Select Future Date (YYYY-MM):</label>
+                <input type="month" name="future_date" required>
+
+                <label for="unit">Select Price Unit:</label>
+                <select name="unit" id="unit">
+                    <option value="per_kg">₹ per kg</option>
+                    <option value="per_ton">₹ per ton</option>
+                </select>
+
+                <button type="submit">Predict Price</button>
+            </form>
+        </section>
+
+        {% if predicted_price %}
+        <section class="prediction-result">
+            <h2>💰 Predicted Price: {{ predicted_price }} {{ unit }}</h2>
+        </section>
+        {% endif %}
+
+        <section class="insights-section">
+            <h2>📈 Crop Insights and Trends</h2>
+            {% for trend, crop in trends_and_crops %}
+                <div class="crop-insight-card">
+                    <h3 class="insight-title">
+                        <span class="icon">🌾</span>{{ crop }} Price Insights
+                    </h3>
+
+                    <p class="insight-detail">
+                        📈 <span class="highlight">Best Month to Sell:</span> {{ insights[crop]['best_month'] }} 
+                        (Avg Price: ₹{{ insights[crop]['best_price'] }})
+                    </p>
+
+                    <p class="insight-detail">
+                        📉 <span class="highlight">Worst Month to Sell:</span> {{ insights[crop]['worst_month'] }} 
+                        (Avg Price: ₹{{ insights[crop]['worst_price'] }})
+                    </p>
+
+                    <p class="insight-detail">
+                        🔍 <span class="highlight">Long-Term Trend:</span>
+                        {% if insights[crop]['trend'] == 'increasing' %}
+                            Prices have been <span class="highlight">steadily increasing</span> over the past 5 years.
+                        {% else %}
+                            Prices have been <span class="highlight">slightly decreasing</span> recently.
+                        {% endif %}
+                    </p>
+
+                    <p class="insight-detail">
+                        🔄 <span class="highlight">Price Stability:</span>
+                        {{ 'Stable with minor fluctuations' if insights[crop]['price_stability'] else 'Highly volatile prices' }}
+                    </p>
+
+                    {{ trend | safe }}
+                </div>
+            {% endfor %}
+        </section>        
+    </div>
+
+    <footer>
+        <p>🌾 Built for Farmers | Supporting Multiple Languages 🌍</p>
+    </footer>
+
+</body>
+</html>

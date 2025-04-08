@@ -1,0 +1,47 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: #007bff;
+    color: white;
+}
+
+section {
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    color: #007bff;
+}
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+form label, form select, form input, form button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+}
+
+.trends-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
