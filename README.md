@@ -1,8 +1,6 @@
 ## Team Infromation:
 -  (1) Saiyad Uveshali ( Backend Developer )
 -  (2) prince Raiyani ( AI/ML Developer)
--  (3) Ayush Gajera ( AI/ML & Backend Developer)
--  (4) Meet Shah ( UI/UX Designer & Frontend Developer )
 
 # Video Presentation
 https://youtu.be/UFd52afRBZU
