@@ -18,21 +18,22 @@ const features = [
     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5c6GexCoIeOIwrF6Rtr5lF3Bozp-PP5hLZA&s',
   },
   {
-    title: 'Blockchain Transparency',
-    description: 'Every product is tracked with immutable blockchain records and QR codes, from farm to your table.',
-    image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-4.0.3&auto=format&fit=crop&q=80',
-  },
-  {
-    title: 'Voice & Language Support',
-    description: 'Break language barriers with our intuitive voice navigation system supporting multiple local languages.',
-    image: 'https://images.unsplash.com/photo-1512054502232-10a0a035d672?ixlib=rb-4.0.3&auto=format&fit=crop&q=80',
-  },
-  {
     title: 'Real-Time Updates',
     description: 'Stay informed with instant notifications about crop growth, availability, and market prices.',
     image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&q=80',
   },
+  {
+    title: 'Data-Driven Insights',
+    description: 'Access comprehensive analytics and predictive models to optimize resource usage and maximize yields.',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJhXBrzHy-tPFQtGQgWRGy6LIapvb7jJpTwg&s',
+  },
+  {
+    title: 'Multi-Agent Collaboration',
+    description: 'Connect with farmers, experts, and markets through a unified platform for seamless communication and collaboration.',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfiIpP7_x3MD41pkeFZ0yydX8RgsjHYuuyRQ&s',
+  },
 ];
+
 
 const stats = [
   { id: 1, name: 'Farmers Empowered', value: '10,000+' },
@@ -74,14 +75,6 @@ const faqs = [
   {
     question: "How does your AI-powered certification process work?",
     answer: "Our AI system uses advanced computer vision to analyze photos of farming practices, soil health, and crop conditions. Farmers simply upload photos through our mobile app, and our AI verifies compliance with organic standards in real-time. This is backed by periodic physical verification for complete assurance."
-  },
-  {
-    question: "What makes your blockchain tracking system different?",
-    answer: "Each product gets a unique QR code linked to an immutable blockchain record. Consumers can scan this to view the complete journey - from planting to harvest, including soil tests, certification details, and transport conditions. It's a level of transparency that's unprecedented in agriculture."
-  },
-  {
-    question: "How do you support farmers who aren't tech-savvy?",
-    answer: "Our platform features voice navigation in 12 local languages, with simple picture-based interfaces. We also provide free training through local farmer cooperatives and 24/7 voice support. The app works offline and syncs when connection is available."
   },
   {
     question: "What kind of market insights do farmers receive?",
@@ -127,15 +120,14 @@ const handleSubmit = (e) => {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="text-center"
           >
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl lg:text-7xl">
-              Growing Tomorrow's 
-              <span className="text-primary block mt-2">Sustainable Future</span>
-            </h1>
+           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl lg:text-7xl">
+  Cultivating a 
+  <span className="text-primary block mt-2">Greener Tomorrow</span>
+</h1>
             <p className="mt-6 text-lg leading-8 text-gray-600 max-w-2xl mx-auto">
-              Join our revolutionary platform where technology meets tradition. 
-              We're empowering farmers with cutting-edge tools while ensuring 
-              transparency and fair pricing for conscious consumers.
+            Join us in harnessing the power of AI to transform agriculture into a sustainable and thriving industry. Our multi-agent system brings together farmers, weather stations, and agricultural experts to optimize farming practices, reduce environmental impact, and improve livelihoods.
             </p>
+            <h4>meet</h4>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <motion.div
                 whileHover={{ scale: 1.05 }}
