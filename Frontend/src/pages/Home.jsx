@@ -141,7 +141,7 @@ const handleSubmit = (e) => {
                 </Link>
               </motion.div>
               <Link
-                to="/about"
+                to="/help"
                 className="text-lg font-semibold leading-6 text-gray-900 hover:text-gray-700"
               >
                 Learn more <span aria-hidden="true">→</span>

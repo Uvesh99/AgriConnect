@@ -10,7 +10,7 @@ import Login from './pages/Login';
 import UploadForm from './components/UploadForm';
 import UploadProduct from './components/UploadProduct';
 import Profile from './components/Profile';
-import DirectMessages from './pages/DirectMessages';
+import DirectMessagesPage from './pages/DirectMessagesPage';
 import Groups from './pages/Groups';
 import MarketUpdates from './pages/MarketUpdates';
 import Community from './pages/Community';
@@ -74,7 +74,7 @@ function App() {
             <Route path="/bid/:productId" element={<Bid />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/community" element={<Community />} />
-            <Route path="/messages" element={<DirectMessages />} />
+            <Route path="/messages" element={<DirectMessagesPage />} />
             <Route path="/groups" element={<Groups />} />
             <Route path="/market-updates" element={<MarketUpdates />} />
             <Route path="/help" element={<FarmerHelp />} />

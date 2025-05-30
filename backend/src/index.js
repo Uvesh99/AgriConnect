@@ -13,11 +13,16 @@ import certificationRoutes from "./routes/certificationRoutes.js";
 import cropRoutes from "./routes/cropRoutes.js"
 import bidRoutes from "./routes/bidRoutes.js"
 import reviewRoutes from "./routes/reviewRoutes.js"
+import http from "http";
+import { initSocket } from "./modules/chat/socket.js";
+import chatRoutes from "./modules/chat/chat.routes.js"
+import notificationRoutes from "./modules/chat/notificationRoutes.js";
 
 dotenv.config();
 connectDB();
 
 const app = express();
+const server = http.createServer(app);
 app.use(express.json());
 
 app.use(cors())
@@ -32,9 +37,14 @@ app.use("/api/certifications", certificationRoutes);
 app.use("/api/crop",cropRoutes);
 app.use("/api/bid",bidRoutes);
 app.use("/api/review",reviewRoutes);
+app.use("/api/chat", chatRoutes);
+app.use("/api/notifications", notificationRoutes);
 
 app.get("/",(req,res)=>{
     res.send("Welcome to AgriConnect API's")
 })
+
+// Socket.IO
+initSocket(server);
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
