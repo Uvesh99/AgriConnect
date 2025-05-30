@@ -167,7 +167,7 @@ import Sidebar from "../components/Sidebar";
 import axios from "axios";
 import DirectMessages from "../components/DirectMessages";
 // // Replace with your actual API endpoint
-const USERS_API = "http://localhost:5000/api/user/";
+const USERS_API = "https://agriconnect-backend-oumj.onrender.com/api/user/";
 
 function DirectMessagesPage(){
     const [currentUser, setCurrentUser] = useState(null);

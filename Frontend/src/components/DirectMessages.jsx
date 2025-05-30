@@ -95,7 +95,7 @@ function DirectMessages({ currentUser, selectedUser, token }) {
     if (!selectedUser) return;
     axios
       .get(
-        `http://localhost:5000/api/chat/private/${selectedUser._id}`,
+        `https://agriconnect-backend-oumj.onrender.com/api/chat/private/${selectedUser._id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       )
       .then((res) => setMessages(res.data))
