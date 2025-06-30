@@ -7,6 +7,7 @@ sendMessage,
   createGroup,
   getUserGroups,
   getGroupMessages,
+  getContacts,
 } from "./chat.controller.js";
 import protect from "../../middlewares/authMiddleware.js";
 
@@ -24,5 +25,7 @@ router.get("/groups", protect, getUserGroups);
 
 // Get messages of a group
 router.get("/group/:roomId", protect, getGroupMessages);
+
+router.get("/contacts", protect, getContacts)
 
 export default router;

@@ -107,3 +107,21 @@ export const getGroupMessages = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch group messages." });
   }
 };
+
+export const getContacts= async (req, res)=>{
+  const userId = req.user._id;
+  const messages = await Message.find({
+    $or : [{sender: userId}, {receiver: userId}]
+  }).populate("sender receiver", "username name")
+
+  const contacts={};
+  messages.forEach(msg =>{
+    if(msg.sender._id.toString()!==userId.toString()){
+      contacts[msg.sender._id]=msg.sender;
+    }
+    if (msg.receiver._id.toString() !== userId.toString()) {
+      contacts[msg.receiver._id] = msg.receiver;
+    }
+  });
+  res.json(Object.values(contacts));
+};
