@@ -26,6 +26,7 @@ const Login = () => {
       localStorage.setItem("email", response.user.email);
       localStorage.setItem("phone", response.user.phone);
       localStorage.setItem("role", response.user.role);
+      window.dispatchEvent(new Event("authChange"));
       setSuccess(true);
       navigate('/');
     } catch (err) {

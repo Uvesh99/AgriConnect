@@ -44,16 +44,30 @@ export default function Navbar() {
     setAnchorEl(null);
   };
 
-  React.useEffect(() => {
-    const handleStorageChange = () => {
-      setStoredEmail(localStorage.getItem('email'));
-    };
+  // React.useEffect(() => {
+  //   const handleStorageChange = () => {
+  //     setStoredEmail(localStorage.getItem('email'));
+  //   };
 
-    window.addEventListener('storage', handleStorageChange);
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-    };
-  }, []);
+  //   window.addEventListener('storage', handleStorageChange);
+  //   return () => {
+  //     window.removeEventListener('storage', handleStorageChange);
+  //   };
+  // }, []);
+
+  React.useEffect(() => {
+  const handleStorageChange = () => {
+    setStoredEmail(localStorage.getItem('email'));
+  };
+
+  window.addEventListener('storage', handleStorageChange);
+  window.addEventListener('authChange', handleStorageChange); // Listen for custom event
+
+  return () => {
+    window.removeEventListener('storage', handleStorageChange);
+    window.removeEventListener('authChange', handleStorageChange);
+  };
+}, []);
 
   const handleLogout = () => {
     localStorage.clear();
@@ -178,7 +192,7 @@ export default function Navbar() {
       </div>
 
       {/* Mobile menu */}
-      {isOpen && (
+      {/* {isOpen && (
         <div className="sm:hidden">
           <div className="space-y-1 pb-3 pt-2">
             {navigation.map((item) => (
@@ -197,7 +211,62 @@ export default function Navbar() {
             ))}
           </div>
         </div>
+      )} */}
+      {isOpen && (
+  <div className="sm:hidden">
+    <div className="space-y-1 pb-3 pt-2">
+      {navigation.map((item) => (
+        <Link
+          key={item.name}
+          to={item.href}
+          className={classNames(
+            item.current
+              ? 'bg-primary-50 border-primary-500 text-primary-700'
+              : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700',
+            'block border-l-4 py-2 pl-3 pr-4 text-base font-medium'
+          )}
+        >
+          {item.name}
+        </Link>
+      ))}
+      {/* Add user menu for mobile */}
+      {storedEmail ? (
+        <div className="border-t pt-3 mt-3">
+          <div className="flex items-center space-x-2 mb-2">
+            <Avatar sx={{ width: 32, height: 32 }}>
+              {storedEmail.charAt(0).toUpperCase()}
+            </Avatar>
+            <span className="font-medium">{storedEmail}</span>
+          </div>
+          <Link
+            to="/profile"
+            className="block py-2 text-gray-700 hover:text-primary-600"
+            onClick={() => setIsOpen(false)}
+          >
+            My Account
+          </Link>
+          <Link
+            to="/dashboard"
+            className="block py-2 text-gray-700 hover:text-primary-600"
+            onClick={() => setIsOpen(false)}
+          >
+            Dashboard
+          </Link>
+          <button
+            onClick={handleLogout}
+            className="block w-full text-left py-2 text-red-600 hover:text-red-800"
+          >
+            Logout
+          </button>
+        </div>
+      ) : (
+        <Link to="/signup">
+          <button className="btn-primary w-full mt-2">SignUp</button>
+        </Link>
       )}
+    </div>
+  </div>
+)}
     </nav>
   );
 }

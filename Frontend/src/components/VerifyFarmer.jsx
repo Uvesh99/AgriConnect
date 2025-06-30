@@ -190,7 +190,7 @@ const FarmerVerification = () => {
 
   return (
     <div className="p-5 max-w-lg mx-auto bg-white rounded-xl shadow-md space-y-4" style={{ marginTop: "4rem" }}>
-      <Link to="http://127.0.0.1:5000/">
+      <Link to="https://soilanalyzer-2h4vfkhohzx8u3jtsqhyfl.streamlit.app/" target="blank">
         <button
           className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg shadow-lg transition-all duration-300"
           style={{ margin: "4rem" }}
