@@ -67,7 +67,7 @@ export const createGroup = async (req, res) => {
   try {
     const newGroup = new ChatRoom({
       name,
-      members,
+      members : [...(members || []), req.user._id],
       isGroup: true,
     });
 
@@ -124,4 +124,40 @@ export const getContacts= async (req, res)=>{
     }
   });
   res.json(Object.values(contacts));
+};
+
+export const joinGroup = async (req, res) => {
+  const userId = req.user._id;
+  const { groupId } = req.params;
+
+  try {
+    const group = await ChatRoom.findById(groupId);
+    if (!group) {
+      return res.status(404).json({ error: "Group not found." });
+    }
+
+    // Check if already a member
+    if (group.members.some(m => m.toString() === userId.toString())) {
+      return res.status(400).json({ error: "Already a member of this group." });
+    }
+
+    group.members.push(userId);
+    await group.save();
+
+    res.status(200).json({ message: "Joined group successfully.", group });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to join group." });
+  }
+};
+
+export const getAllGroups = async (req, res) => {
+  try {
+    const groups = await ChatRoom.find({ isGroup: true }).populate(
+      "members",
+      "name username"
+    );
+    res.status(200).json(groups);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch all groups." });
+  }
 };
