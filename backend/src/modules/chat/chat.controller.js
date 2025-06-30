@@ -98,7 +98,7 @@ export const getGroupMessages = async (req, res) => {
   const { roomId } = req.params;
 
   try {
-    const messages = await Message.find({ chatRoom: roomId })
+    const messages = await Message.find({ groupId: roomId })
       .sort({ createdAt: 1 })
       .populate("sender", "name username");
 

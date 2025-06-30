@@ -26,7 +26,7 @@ router.post("/group", protect, createGroup);
 router.get("/groups", protect, getUserGroups);
 
 // Get messages of a group
-router.get("/group/:roomId", protect, getGroupMessages);
+router.get("/group/:groupId", protect, getGroupMessages);
 
 router.get("/contacts", protect, getContacts)
 
