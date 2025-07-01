@@ -163,7 +163,7 @@ const Chatbot = () => {
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={(e) => e.key === "Enter" && sendMessage()}
             />
-            <button className="bg-blue-500 text-white px-4 rounded-r" onClick={sendMessage}>
+            <button className="bg-green-500 text-white px-4 rounded-r" onClick={sendMessage}>
               Send
             </button>
           </div>
