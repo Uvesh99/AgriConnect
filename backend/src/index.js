@@ -47,4 +47,6 @@ app.get("/",(req,res)=>{
 // Socket.IO
 initSocket(server);
 const PORT = process.env.PORT || 5000;
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// src/index.js
+server.listen(PORT, '0.0.0.0', () => console.log(`Server running on port ${PORT}`));
+
