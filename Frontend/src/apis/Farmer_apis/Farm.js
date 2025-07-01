@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://agriconnect-backend-env.eba-mzszbuas.ap-south-1.elasticbeanstalk.com'; 
+const API_URL = 'http://16.170.205.65:5000'; 
 
 export const uploadFarmVerification = async (formData) => {
   try {
