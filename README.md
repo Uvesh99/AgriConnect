@@ -1,6 +1,3 @@
-# Video Presentation
-https://youtu.be/UFd52afRBZU
-
 # Live Link 
 https://agri-connect-sable.vercel.app/
 
