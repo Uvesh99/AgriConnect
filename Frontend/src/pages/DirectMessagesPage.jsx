@@ -369,7 +369,7 @@ import axios from "axios";
 import DirectMessages from "../components/DirectMessages";
 import { FaBars, FaTimes } from "react-icons/fa";
 
-const CONTACTS_API = "http://agriconnect-backend-env.eba-mzszbuas.ap-south-1.elasticbeanstalk.com/api/chat/contacts";
+const CONTACTS_API = "https://agriconnect-backend-oumj.onrender.com/api/chat/contacts";
 
 function DirectMessagesPage() {
   const [currentUser, setCurrentUser] = useState(null);

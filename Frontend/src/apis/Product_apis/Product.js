@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://16.170.205.65:5000';
+const API_URL = 'https://agriconnect-backend-oumj.onrender.com';
 
 export const fetchProducts = async () => {
   try {

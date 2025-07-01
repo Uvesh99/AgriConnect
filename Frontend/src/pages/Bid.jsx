@@ -5,7 +5,7 @@ import { BidProduct } from '../apis/Product_apis/Product';
 
 // Function to fetch product bids
 const GetBigProducts = async (productId) => {
-  const response = await fetch(`hhttp://agriconnect-backend-env.eba-mzszbuas.ap-south-1.elasticbeanstalk.com/api/bid/${productId}`);
+  const response = await fetch(`https://agriconnect-backend-oumj.onrender.com/api/bid/${productId}`);
   
   if (!response.ok) {
     throw new Error('Network response was not ok');

@@ -37,7 +37,7 @@ function Groups() {
     if (!token) return;
     axios
       .get(
-        "http://agriconnect-backend-env.eba-mzszbuas.ap-south-1.elasticbeanstalk.com/api/chat/all-groups",
+        "https://agriconnect-backend-oumj.onrender.com/api/chat/all-groups",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -51,7 +51,7 @@ function Groups() {
     if (!selectedGroup || !token || !isMember(selectedGroup)) return;
     axios
       .get(
-        `http://agriconnect-backend-env.eba-mzszbuas.ap-south-1.elasticbeanstalk.com/api/chat/group/${selectedGroup._id}`,
+        `https://agriconnect-backend-oumj.onrender.com/api/chat/group/${selectedGroup._id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       )
       .then((res) => setMessages(res.data))
@@ -102,7 +102,7 @@ function Groups() {
     setError("");
     try {
       const res = await axios.post(
-        "http://agriconnect-backend-env.eba-mzszbuas.ap-south-1.elasticbeanstalk.com/api/chat/group",
+        "https://agriconnect-backend-oumj.onrender.com/api/chat/group",
         newGroup,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -123,13 +123,13 @@ function Groups() {
     setError("");
     try {
       await axios.post(
-        `http://agriconnect-backend-env.eba-mzszbuas.ap-south-1.elasticbeanstalk.com/api/chat/group/${groupId}/join`,
+        `https://agriconnect-backend-oumj.onrender.com/api/chat/group/${groupId}/join`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
       // Refetch all groups to update membership
       const res = await axios.get(
-        "http://agriconnect-backend-env.eba-mzszbuas.ap-south-1.elasticbeanstalk.com/api/chat/all-groups",
+        "https://agriconnect-backend-oumj.onrender.com/api/chat/all-groups",
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setGroups(res.data);
