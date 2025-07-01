@@ -16,7 +16,7 @@ function GroupChat({ currentUser, selectedGroup, token, isMember, handleJoinGrou
     }
     axios
       .get(
-        `https://agriconnect-backend-oumj.onrender.com/api/chat/group/${selectedGroup._id}`,
+        `http://agriconnect-backend-env.eba-mzszbuas.ap-south-1.elasticbeanstalk.com/api/chat/group/${selectedGroup._id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       )
       .then((res) => setMessages(res.data))

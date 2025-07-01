@@ -49,7 +49,7 @@ const FarmerVerification = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        "https://agriconnect-backend-oumj.onrender.com/api/certifications/verify-farmer",
+        "http://agriconnect-backend-env.eba-mzszbuas.ap-south-1.elasticbeanstalk.com/api/certifications/verify-farmer",
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );

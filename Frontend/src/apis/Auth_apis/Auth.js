@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://agriconnect-backend-oumj.onrender.com';
+const API_URL = 'http://agriconnect-backend-env.eba-mzszbuas.ap-south-1.elasticbeanstalk.com';
 
 export const registerUser = async (userData) => {
     const response = await axios.post(`${API_URL}/api/auth/register`, userData);
