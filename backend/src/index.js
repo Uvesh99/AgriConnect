@@ -17,6 +17,7 @@ import http from "http";
 import { initSocket } from "./modules/chat/socket.js";
 import chatRoutes from "./modules/chat/chat.routes.js"
 import notificationRoutes from "./modules/chat/notificationRoutes.js";
+import paymentRoutes from "./routes/paymentRoutes.js";
 
 dotenv.config();
 connectDB();
@@ -39,6 +40,7 @@ app.use("/api/bid",bidRoutes);
 app.use("/api/review",reviewRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/notifications", notificationRoutes);
+app.use("/api/payment", paymentRoutes);
 
 app.get("/",(req,res)=>{
     res.send("Welcome to AgriConnect API's")
