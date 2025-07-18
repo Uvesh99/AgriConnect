@@ -14,7 +14,6 @@
     "@emotion/styled": "^11.14.0",
     "@headlessui/react": "^1.7.19",
     "@heroicons/react": "^2.2.0",
-    "@langchain/community": "^0.3.47",
     "@langchain/core": "^0.3.61",
     "@langchain/google-genai": "^0.2.14",
     "@mapbox/mapbox-gl-geocoder": "^5.0.3",
